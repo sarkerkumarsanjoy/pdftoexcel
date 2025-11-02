@@ -12,6 +12,7 @@ data_split_code=[]
 data_split_account=[]
 dir_list=[]
 code_word=""
+code_value="NA"
 branch_name=""
 account_word=""
 path = "media/MiniApp_Images/"  
@@ -48,7 +49,7 @@ def process(request):
     
     lngth=len(data_lines)
     for x in range(0, lngth):
-        
+       
         branch = re.findall("Branch Code", data_lines[x])
         code = re.findall("[0-9][0-9][0-9][0-9]\s*-", data_lines[x])
         account = re.findall("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]", data_lines[x])
@@ -56,7 +57,7 @@ def process(request):
         if (branch):
             branch_name=data_lines[x]
         if (code):
-            code_word=data_lines[x]
+            code_word=data_lines[x-1]
         if (account):
             account_word=data_lines[x]
             account_word_list=data_lines[x].split(" ")
@@ -66,6 +67,7 @@ def process(request):
             
             c1 = sheet.cell(row = r, column = 1) 
             c1.value = branch_name[branch_name.find("Branch Code")+12:len(branch_name)]
+
             c1 = sheet.cell(row = r, column = 2) 
             c1.value = code_word 
             
@@ -80,10 +82,45 @@ def process(request):
                         
             c2 = sheet.cell(row= r , column = 6) 
             c2.value = float(account_word_list[4].replace(",",""))
+            
+            #c1 = sheet.cell(row = r, column = 7) 
+            #c1.value = code_word[code_word.find("[0-9][0-9][0-9][0-9]\s*-")+3:len(code_word)]
+            c2 = sheet.cell(row= r , column = 7) 
+            c2.value = data_lines[x]
+            c2 = sheet.cell(row= r , column = 8) 
+            c2.value = data_lines[x+1]
+            c2 = sheet.cell(row= r , column = 9) 
+            c2.value = data_lines[x+2]
+            c2 = sheet.cell(row= r , column = 10) 
+            c2.value = data_lines[x+3]
+            c2 = sheet.cell(row= r , column = 11) 
+            c2.value = data_lines[x+4]
+            c2 = sheet.cell(row= r , column = 12) 
+            c2.value = data_lines[x+5]
+            c2 = sheet.cell(row= r , column = 13) 
+            c2.value = data_lines[x+6]
+            c2 = sheet.cell(row= r , column = 14) 
+            c2.value = data_lines[x+7]       
+            c2 = sheet.cell(row= r , column = 15) 
+            c2.value = data_lines[x+8]
+            c2 = sheet.cell(row= r , column = 15) 
+            c2.value = data_lines[x+9]
+            c2 = sheet.cell(row= r , column = 15) 
+            c2.value = data_lines[x+10]
+            c2 = sheet.cell(row= r , column = 16) 
+            c2.value = data_lines[x+11]
 
-            #c2 = sheet.cell(row= r , column = 7) 
-            #c2.value = account_balane
+            c2 = sheet.cell(row= r , column = 17) 
+            c2.value = data_lines[x-1]
+            if re.search(r"[0-9][0-9][0-9][0-9]\s*-", data_lines[x-1]):
+             c1 = sheet.cell(row = r, column = 18) 
 
+             c1.value = data_lines[x-1]
+             code_value=data_lines[x-1]
+            else:
+             c1 = sheet.cell(row = r, column = 18) 
+
+             c1.value = code_value  
             r=r+1
         
     wb.save("media/MiniApp_Images/branch.xlsx")    
