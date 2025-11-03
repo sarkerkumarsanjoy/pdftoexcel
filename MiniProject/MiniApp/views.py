@@ -123,7 +123,9 @@ def process(request):
 
              c1.value = code_value
             c2 = sheet.cell(row= r , column = 19) 
-            c2.value = data_lines[x+11]
+            c2.value = data_lines[0]
+            c2 = sheet.cell(row= r , column = 20) 
+            c2.value = data_lines[1]
                 
              # 3.10.25  from sbl time 4:03 PM
             r=r+1
