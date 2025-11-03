@@ -46,14 +46,15 @@ def process(request):
             data=" ".join([data, page.extract_text()])
  
     data_lines=data.splitlines()
-    
+    print(data)
     lngth=len(data_lines)
     for x in range(0, lngth):
-       
+
         branch = re.findall("Branch Code", data_lines[x])
         code = re.findall("[0-9][0-9][0-9][0-9]\s*-", data_lines[x])
         account = re.findall("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]", data_lines[x])
         data_split_code.append(data_lines[x])
+        
         if (branch):
             branch_name=data_lines[x]
         if (code):
@@ -124,8 +125,9 @@ def process(request):
              c1.value = code_value
             c2 = sheet.cell(row= r , column = 19) 
             c2.value = data_lines[0]
-            c2 = sheet.cell(row= r , column = 20) 
-            c2.value = data_lines[1]
+            #for j in range(0, len(data_lines)):
+          
+            
                 
              # 3.10.25  from sbl time 4:03 PM
             r=r+1
