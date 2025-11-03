@@ -121,7 +121,7 @@ def process(request):
              c1 = sheet.cell(row = r, column = 18) 
 
              c1.value = code_value
-             # 3.10.25  from sbl time 4:00 PM
+             # 3.10.25  from sbl time 4:03 PM
             r=r+1
         
     wb.save("media/MiniApp_Images/branch.xlsx")    
