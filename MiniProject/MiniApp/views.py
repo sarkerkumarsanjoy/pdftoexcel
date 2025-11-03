@@ -75,13 +75,13 @@ def process(request):
             c2.value = account_word_list[0]
             c2 = sheet.cell(row= r , column = 4) 
             c2.value = account_name_list
- 
+            if 0 <= 2 < len(account_word_list): 
             
-            c2 = sheet.cell(row= r , column = 5) 
-            c2.value = account_word_list[2]
-                        
-            c2 = sheet.cell(row= r , column = 6) 
-            c2.value = float(account_word_list[4].replace(",",""))
+             c2 = sheet.cell(row= r , column = 5) 
+             c2.value = account_word_list[2]
+            if 0 <= 4 < len(account_word_list):            
+             c2 = sheet.cell(row= r , column = 6) 
+             c2.value = float(account_word_list[4].replace(",",""))
             
             #c1 = sheet.cell(row = r, column = 7) 
             #c1.value = code_word[code_word.find("[0-9][0-9][0-9][0-9]\s*-")+3:len(code_word)]
@@ -120,7 +120,8 @@ def process(request):
             else:
              c1 = sheet.cell(row = r, column = 18) 
 
-             c1.value = code_value  
+             c1.value = code_value
+             # 3.10.25  
             r=r+1
         
     wb.save("media/MiniApp_Images/branch.xlsx")    
