@@ -82,7 +82,7 @@ def process(request):
             if 0 <= 4 < len(account_word_list):            
              c2 = sheet.cell(row= r , column = 6) 
              c2.value = float(account_word_list[4].replace(",",""))
-            
+            # edited on 3.11.25 from sbl
             #c1 = sheet.cell(row = r, column = 7) 
             #c1.value = code_word[code_word.find("[0-9][0-9][0-9][0-9]\s*-")+3:len(code_word)]
             c2 = sheet.cell(row= r , column = 7) 
