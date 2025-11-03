@@ -112,6 +112,7 @@ def process(request):
 
             c2 = sheet.cell(row= r , column = 17) 
             c2.value = data_lines[x-1]
+            
             if re.search(r"[0-9][0-9][0-9][0-9]\s*-", data_lines[x-1]):
              c1 = sheet.cell(row = r, column = 18) 
 
@@ -121,6 +122,9 @@ def process(request):
              c1 = sheet.cell(row = r, column = 18) 
 
              c1.value = code_value
+            c2 = sheet.cell(row= r , column = 19) 
+            c2.value = data_lines[x+11]
+                
              # 3.10.25  from sbl time 4:03 PM
             r=r+1
         
