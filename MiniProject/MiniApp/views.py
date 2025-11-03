@@ -46,11 +46,14 @@ def process(request):
             data=" ".join([data, page.extract_text()])
  
     data_lines=data.splitlines()
-    print(data)
+    result = re.split(r"^\d{4}\s-\s$", data)
+    for i in data_lines:
+        print(i)
+     #^\d{4}\s-\s$
     lngth=len(data_lines)
     for x in range(0, lngth):
 
-        branch = re.findall("Branch Code", data_lines[x])
+        branch = re.findall("Branch Code", data_lines[x]) 
         code = re.findall("[0-9][0-9][0-9][0-9]\s*-", data_lines[x])
         account = re.findall("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]", data_lines[x])
         data_split_code.append(data_lines[x])
